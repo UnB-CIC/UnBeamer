@@ -1,0 +1,1101 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2012 by Guilherme N. Ramos (gnramos@unb.br)
+%
+% Este arquivo pode ser distribuído e/ou modificado conforme:
+%    1. LaTeX Project Public License e/ou
+%    2. GNU Public License.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{UnBeamer.dtx}
+%</driver>
+%<*all>
+
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]%
+
+%</all>
+%
+%<theme>\ProvidesPackage{beamerthemeUnB}[2011/08/01 Tema para apresentações usando Beamer no estilo UnB.]%
+%<*theme>
+
+%</theme>
+%<theme>\mode<presentation>{
+%<theme>    \IfFileExists{UnBMarca.pdf}{}% Marca da UnB
+%<theme>    {%
+%<theme>        \PackageError{beamerthemeUnB}%
+%<theme>        {Arquivo 'UnBMarca.pdf' não encontrado.}%
+%<theme>        {O arquivo com a marca da UnB é fornecido no arquivo ZIP do tema UnBeamer.}%
+%<theme>    }%
+%<*theme>
+
+%</theme>
+%<theme>    \useinnertheme{UnB}%
+%<theme>    \useoutertheme{UnB}%
+%<theme>    \usecolortheme{UnB}%
+%<theme>    \usefonttheme{UnB}%
+%<*theme>
+
+%</theme>
+%<theme>    % Redefine o frame de título.
+%<theme>    \titlegraphic{\includegraphics[height=3\baselineskip]{UnBMarca}}%
+%<theme>    \defbeamertemplate*{title page}{customized}[1][]{%
+%<theme>        \vbox{}%
+%<theme>        \vfill%
+%<theme>        \begin{centering}%
+%<theme>            \begin{beamercolorbox}[sep=8pt,center,#1]{title}%
+%<theme>                \usebeamerfont{title}\inserttitle\par%
+%<theme>                \ifx\insertsubtitle\@empty%
+%<theme>                \else%
+%<theme>                    \vskip0.25em%
+%<theme>                    {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+%<theme>                \fi%
+%<theme>            \end{beamercolorbox}%
+%<theme>            %\vskip1em\par
+%<theme>            \ifx\insertauthor\@empty%
+%<theme>            \else%
+%<theme>                \begin{beamercolorbox}[sep=8pt,center,#1]{author}%
+%<theme>                    \usebeamerfont{author}\insertauthor%
+%<theme>                \end{beamercolorbox}%
+%<theme>            \fi%
+%<theme>            \ifx\insertinstitute\@empty%
+%<theme>            \else%
+%<theme>            \begin{beamercolorbox}[sep=8pt,center,#1]{institute}%
+%<theme>                \usebeamerfont{institute}\insertinstitute%
+%<theme>            \end{beamercolorbox}%
+%<theme>            \fi%
+%<theme>            \ifx\insertdate\@empty%
+%<theme>            \else%
+%<theme>                \begin{beamercolorbox}[sep=8pt,center,#1]{date}%
+%<theme>                    \usebeamerfont{date}\insertdate%
+%<theme>                \end{beamercolorbox}\vskip0.5em%
+%<theme>            \fi%
+%<theme>            {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}%
+%<theme>        \end{centering}%
+%<theme>        \vfill%
+%<theme>    }%
+%<theme>}
+%<*theme>
+
+%</theme>
+%<theme>\mode<all>
+%
+%<color>\ProvidesPackage{beamercolorthemeUnB}[2011/08/01 Estilo de cores para UnBeamer.]%
+%<*color>
+
+%</color>
+%<color>\definecolor{greenUnB}{HTML}{006633}%
+%<color>\definecolor{blueUnB}{HTML}{003366}%
+%<color>\definecolor{redUnB}{HTML}{BC0000}%
+%<*color>
+
+%</color>
+%<color>\mode<presentation>{
+%<color>    \setbeamercolor{titlelike}{fg=blueUnB}%
+%<*color>
+
+%</color>
+%<color>    \setbeamercolor{title in head/foot}{fg=blueUnB}%
+%<color>    \setbeamercolor{author in head/foot}{fg=blueUnB}%
+%<color>    \setbeamercolor{institute in head/foot}{fg=blueUnB}%
+%<*color>
+
+%</color>
+%<color>    \setbeamercolor{section in toc}{fg=blueUnB}%
+%<*color>
+
+%</color>
+%<color>    \setbeamercolor{alerted text}{fg=redUnB}%
+%<color>    \setbeamercolor{example text}{fg=greenUnB}%
+%<*color>
+
+%</color>
+%<color>    \setbeamercolor{block body}{bg=blueUnB!10}%
+%<color>    \setbeamercolor{block body alerted}{bg=redUnB!10}%
+%<color>    \setbeamercolor{block body example}{bg=greenUnB!10}%
+%<color>    \setbeamercolor{block title}{fg=white,bg=blueUnB}%
+%<color>    \setbeamercolor{block title alerted}{fg=white,bg=redUnB}%
+%<color>    \setbeamercolor{block title example}{fg=white,bg=greenUnB}%
+%<color>    %%\setbeamercolor{block title}{fg=blueUnB!80!black,bg=blueUnB!30}%
+%<color>    %%\setbeamercolor{block title alerted}{fg=redUnB!80!black,bg=redUnB!30}%
+%<color>    %%\setbeamercolor{block title example}{fg=greenUnB!80!black,bg=greenUnB!30}%
+%<*color>
+
+%</color>
+%<color>    \setbeamercolor{description item}{fg=blueUnB}%
+%<color>    \setbeamercolor{description subitem}{fg=blueUnB}%
+%<color>    \setbeamercolor{description subsubitem}{fg=blueUnB}%
+%<color>    \setbeamercolor{enumerate item}{fg=blueUnB}%
+%<color>    \setbeamercolor{enumerate subitem}{fg=blueUnB}%
+%<color>    \setbeamercolor{enumerate subsubitem}{fg=blueUnB}%
+%<color>    \setbeamercolor{itemize item}{fg=blueUnB}%
+%<color>    \setbeamercolor{itemize subitem}{fg=blueUnB}%
+%<color>    \setbeamercolor{itemize subsubitem}{fg=blueUnB}%
+%<*color>
+
+%</color>
+%<color>    \setbeamercolor{upper separation line foot}{bg=blueUnB}%
+%<color>}
+%<*color>
+
+%</color>
+%<color>\mode<all>
+%
+%<font>\ProvidesPackage{beamerfontthemeUnB}[2011/08/01 Estilo de fontes para UnBeamer.]%
+%<*font>
+
+%</font>
+%<font>\mode<presentation>{
+%<font>    \setbeamerfont{title}{size=\Huge,parent=structure}%
+%<font>    \setbeamerfont{subtitle}{size=\Large}%
+%<*font>
+
+%</font>
+%<font>    \setbeamerfont{framesubtitle}{parent=frametitle,size=\normalsize}%
+%<*font>
+
+%</font>
+%<font>    \setbeamerfont{enumerate item}{size=\small}%
+%<font>    \setbeamerfont{enumerate subitem}{size=\footnotesize}%
+%<font>    \setbeamerfont{enumerate subsubitem}{size=\scriptsize}%
+%<font>}
+%<*font>
+
+%</font>
+%<font>\mode<all>
+%
+%<inner>\ProvidesPackage{beamerinnerthemeUnB}[2011/08/01 Formatação interna para UnBeamer.]%
+%<inner>\mode<presentation>{
+%<inner>    \useinnertheme{rounded}%
+%<*inner>
+
+%</inner>
+%<inner>    \setbeamertemplate{itemize items}{-}%
+%<inner>    \setbeamertemplate{enumerate item}          {\insertenumlabel}%
+%<inner>    \setbeamertemplate{enumerate subitem}       {\insertenumlabel.\insertsubenumlabel}%
+%<inner>    \setbeamertemplate{enumerate subsubitem}    {\insertenumlabel.\insertsubenumlabel.\insertsubsubenumlabel}%
+%<inner>    \setbeamertemplate{sections/subsections in toc}[default]%
+%<inner>}
+%<*inner>
+
+%</inner>
+%<inner>\mode<all>
+%
+%<outer>\ProvidesPackage{beamerouterthemeUnB}[2011/08/01 Formatação externa para UnBeamer.]%
+%<outer>\mode<presentation>{
+%<outer>    \setbeamertemplate{navigation symbols}{}%
+%<*outer>
+
+%</outer>
+%<outer>    % Liberar o nome da subseção a cada nova seção (inseridos automaticamente pelo slide)
+%<outer>    \newcommand{\unbeamer@emptySubSubSecName}{\@ifundefined{subsubsecname}{}{\let\subsubsecname\@empty}}%
+%<outer>    \let\unbeamer@oldSubSection\subsection% http://www.latex-community.org/forum/viewtopic.php?f=31&t=2022&p=7858
+%<outer>    \newcommand{\unbeamer@subsection}[1]{\unbeamer@emptySubSubSecName\unbeamer@oldSubSection{#1}}%
+%<outer>    \newcommand{\unbeamer@subsectionStar}{\unbeamer@emptySubSubSecName\unbeamer@oldSubSection*}%
+%<outer>    \renewcommand{\subsection}{\@ifstar\unbeamer@subsectionStar\unbeamer@subsection}%
+%<*outer>
+
+%</outer>
+%<outer>    \newcommand{\unbeamer@emptySubSecName}{\@ifundefined{subsecname}{}{\let\subsecname\@empty\unbeamer@emptySubSubSecName}}%
+%<outer>    \let\unbeamer@oldSection\section%
+%<outer>    \newcommand{\unbeamer@section}[1]{\unbeamer@emptySubSecName\unbeamer@oldSection{#1}}%
+%<outer>    \newcommand{\unbeamer@sectionStar}{\unbeamer@emptySubSecName\unbeamer@oldSection*}%
+%<outer>    \renewcommand{\section}{\@ifstar\unbeamer@sectionStar\unbeamer@section}%
+%<*outer>
+
+%</outer>
+%<outer>    % Definir automaticamente o título do frame conforme a [sub]seção.
+%<outer>    \let\unbeamer@oldbeamer@checkframetitle\beamer@checkframetitle%
+%<outer>    \renewcommand{\beamer@checkframetitle}{%
+%<outer>        \ifnum\c@framenumber>1%
+%<outer>            \frametitle{\secname}%
+%<outer>            \ifx\subsecname\@empty%
+%<outer>            \else%
+%<outer>                \frametitle{\subsecname}%
+%<outer>                \ifx\subsubsecname\@empty%                    
+%<outer>                \else%
+%<outer>                    \framesubtitle{\subsubsecname}%
+%<outer>                \fi%
+%<outer>            \fi%
+%<outer>            \unbeamer@oldbeamer@checkframetitle%
+%<outer>        \fi%
+%<outer>    }%
+%<*outer>
+
+%</outer>
+%<outer>    % Formatação do slide. (tamanhos padrões: 12.80cm% \beamer@paperheight 9.60cm)
+%<outer>    \newlength{\unbeamer@halfMarginWidth}\setlength{\unbeamer@halfMarginWidth}{0.0125\paperwidth}%
+%<outer>    \setbeamersize{text margin left=2\unbeamer@halfMarginWidth, text margin right=2\unbeamer@halfMarginWidth}%
+%<*outer>
+
+%</outer>
+%<outer>    % Definição do conteúdo do rodapé.
+%<outer>    \newlength{\unbeamer@footerheight}\setlength{\unbeamer@footerheight}{\unbeamer@halfMarginWidth}%
+%<outer>    \newcommand{\unbeamerleftfooter}{%
+%<outer>        % rodapé a esquerda, ocupa 25% do espaço.
+%<outer>        \mbox{\hspace*{\unbeamer@halfMarginWidth}\includegraphics[height=2ex]{UnBMarca}}%
+%<outer>        \usebeamerfont{institute in head/foot}{\ }\insertshortinstitute%
+%<outer>    }%
+%<*outer>
+
+%</outer>
+%<outer>    \newcommand{\unbeamercentralfooter}{%
+%<outer>        % rodapé central, ocupa 50% do espaço.
+%<outer>        \usebeamerfont{title in head/foot}%
+%<outer>        \ifnum\c@framenumber>1%
+%<outer>            \ifx\insertshorttitle\@empty%
+%<outer>            \else%
+%<outer>                \insertshorttitle%
+%<outer>            \fi%
+%<outer>            \@ifundefined{secname}{}{%
+%<outer>                \ifx\insertshorttitle\@empty%
+%<outer>                \else%
+%<outer>                    \ -\ %
+%<outer>                \fi%
+%<outer>                \secname%
+%<outer>            }%
+%<outer>        \fi%
+%<outer>    }%
+%<*outer>
+
+%</outer>
+%<outer>    \newcommand{\unbeamerrightfooter}{%
+%<outer>        % rodapé a direita, ocupa 25% do espaço.
+%<outer>        \usebeamerfont{author in head/foot}%
+%<outer>        \insertframenumber/\inserttotalframenumber\hspace*{\unbeamer@halfMarginWidth}%
+%<outer>    }%
+%<*outer>
+
+%</outer>
+%<outer>    \setbeamertemplate{footline}{%
+%<outer>    \leavevmode%
+%<outer>    %\begin{beamercolorbox}[ht=1pt,colsep=1.5pt]{upper separation line foot}
+%<outer>    %\end{beamercolorbox}
+%<outer>    \begin{beamercolorbox}[wd=.2\paperwidth, ht=\unbeamer@footerheight, dp=.5\unbeamer@footerheight, left]{author in head/foot}%
+%<outer>        \unbeamerleftfooter%
+%<outer>    \end{beamercolorbox}%
+%<outer>    \begin{beamercolorbox}[wd=.6\paperwidth,ht=\unbeamer@footerheight,dp=.5\unbeamer@footerheight,center]{title in head/foot}%
+%<outer>        \unbeamercentralfooter%
+%<outer>    \end{beamercolorbox}%
+%<outer>    \begin{beamercolorbox}[wd=.2\paperwidth,ht=\unbeamer@footerheight,dp=.5\unbeamer@footerheight,right]{author in head/foot}%
+%<outer>        \unbeamerrightfooter%
+%<outer>    \end{beamercolorbox}%
+%<outer>}%
+%<*outer>
+
+%</outer>
+%<outer>% -------------- Fix number of frames in footer ------------- %
+%<*outer>
+
+%</outer>
+%<outer>% Downloaded from http://www-ljk.imag.fr/membres/Jerome.Lelong/latex/appendixnumberbeamer.sty
+%<*outer>
+
+%</outer>
+%<outer>%% Jérôme LELONG (September 2007)
+%<outer>%% 
+%<outer>%% this stuff fixes the frame numbering in beamer when using an appendix such
+%<outer>%% that the slides of the appendix are not counted in the total framenumber
+%<*outer>
+
+%</outer>
+%<outer>\let\appendixtotalframenumber\empty
+%<outer>\def\mainend{-1}
+%<outer>\let\appendixorig\appendix
+%<*outer>
+
+%</outer>
+%<outer>\def\appendix{
+%<outer>  \edef\mainend{\theframenumber}
+%<outer>  \immediate\write\@auxout{\string\global\string\@namedef{mainendframenumber}{\mainend}}
+%<outer>  \appendixorig
+%<outer>  \def\inserttotalframenumber{\appendixtotalframenumber}%
+%<outer>  \setcounter{framenumber}{0}
+%<outer>}
+%<*outer>
+
+%</outer>
+%<outer>\def\pageatend{
+%<outer>  \edef\appendixend{\theframenumber}
+%<outer>  \ifnum\mainend>0%
+%<outer>  \immediate\write\@auxout{\string\global\string\@namedef{appendixtotalframenumber}{\appendixend}}%
+%<outer>  \immediate\write\@auxout{\string\global\string\@namedef{inserttotalframenumber}{\mainend}}%
+%<outer>  \immediate\write\@auxout{\string\@writefile{nav}{\noexpand \headcommand {%
+%<outer>        \noexpand \def\noexpand \inserttotalframenumber{\mainend}}}}%
+%<outer>  \immediate\write\@auxout{\string\@writefile{nav}{\noexpand \headcommand {%
+%<outer>        \noexpand \def\noexpand \appendixtotalframenumber{\appendixend}}}}%
+%<outer>  \else
+%<outer>  \fi
+%<outer>}
+%<*outer>
+
+%</outer>
+%<outer>\AtEndDocument{\pageatend}
+%<outer>}
+%<*outer>
+
+%</outer>
+%<outer>\mode<all>
+%
+%<class>\ProvidesClass{UnBeamer}[2011/08/01 Classe para apresentações no estilo UnB usando Beamer.]%
+%<*class>
+
+%</class>
+%<class>\DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}%
+%<*class>
+
+%</class>
+%<class>%Para gerar notas de aula (4 slides por folha, formato paisagem).
+%<class>\DeclareOption{notasDeAula}{%
+%<class>    \def\unbeamer@notasDeAula{1}%
+%<class>    \PassOptionsToClass{handout}{beamer}%
+%<class>}%
+%<*class>
+
+%</class>
+%<class>% Para imprimir linhas ao lado dos slides para anotações.
+%<class>\DeclareOption{comAnotacoes}{%
+%<class>    \def\unbeamer@comAnotacoes{1}%
+%<class>    \PassOptionsToClass{handout}{beamer}%
+%<class>}%
+%<*class>
+
+%</class>
+%<class>% Para mostrar slides com o conteúdo (índice) da apresentação (a cada nova seção).
+%<class>\DeclareOption{mostraConteudo}{\def\unbeamer@mostraConteudo{1}}%
+%<*class>
+
+%</class>
+%<class>% Criar um poster.
+%<class>\DeclareOption{poster}{%
+%<class>    \def\unbeamer@poster{1}%
+%<class>    \PassOptionsToClass{final}{beamer}%
+%<class>}%
+%<class>\def\unbeamer@posterorientation{portrait}
+%<class>\DeclareOption{orientation=landscape}{\def\unbeamer@posterorientation{landscape}}%
+%<*class>
+
+%</class>
+%<class>\ProcessOptions\relax%
+%<class>\LoadClass{beamer}%
+%<*class>
+
+%</class>
+%<class>\usetheme{UnB}%
+%<*class>
+
+%</class>
+%<class>%% Carrega o arquivo que gera as notas (divide a folha em 4 slides).
+%<class>\newcommand{\unbeamer@handoutWithNotes}[2][portrait]{%
+%<class>    \IfFileExists{handoutWithNotes.sty}{}%
+%<class>    {% não é possível usar algumas opções.
+%<class>        \ClassError{UnBeamer}%
+%<class>        {Arquivo 'handoutWithNotes.sty' não encontrado.}%
+%<class>        {O arquivo é fornecido no arquivo ZIP do tema UnBeamer, mas pode 
+%<class>        ser encontrado em http://www.guidodiepen.nl/2009/07/creating-latex-beamer-handouts-with-notes/ .}%
+%<class>    }%
+%<class>    \RequirePackage{etex}%
+%<class>    \RequirePackage{handoutWithNotes}%
+%<class>    \pgfpagesuselayout{#2}[a4paper, #1, border shrink=5mm]%
+%<class>    \pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}%
+%<class>    \pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}%
+%<class>    \pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}%
+%<class>    \pgfpageslogicalpageoptions{4}{border code=\pgfusepath{stroke}}%
+%<class>}%
+%<*class>
+
+%</class>
+%<class>% Definir layout da página conforme as opções.
+%<class>\ifcsname unbeamer@notasDeAula\endcsname \unbeamer@handoutWithNotes[landscape]{4 on 1} \fi\par%
+%<class>\ifcsname unbeamer@comAnotacoes\endcsname \unbeamer@handoutWithNotes{4 on 1 with notes} \fi\par%
+%<class>\ifcsname unbeamer@mostraConteudo\endcsname
+%<class>    \AtBeginSection[]{%
+%<class>        \begin{frame}%
+%<class>            \frametitle{Conte\'{u}do}%
+%<class>            \tableofcontents[currentsection,hideallsubsections]%
+%<class>        \end{frame}%
+%<class>    }%
+%<class>\fi\par%
+%<*class>
+
+%</class>
+%<class>\ifcsname unbeamer@poster\endcsname 
+%<class>    \RequirePackage[orientation=\unbeamer@posterorientation,size=a0,scale=1.4]{beamerposter}%
+%<class>    \RequirePackage{tikz}%
+%<class>    \RequirePackage{ifthen}%
+%<*class>
+
+%</class>
+%<class>    \usetikzlibrary{shadows}%
+%<class>    \pgfdeclarelayer{background}%
+%<class>    \pgfdeclarelayer{foreground}%
+%<class>    \pgfsetlayers{background,main,foreground}%
+%<*class>
+
+%</class>
+%<class>    \newcommand{\contact}[1]{\gdef\unbeamerpresentation@contact{#1}}%
+%<class>    \newcommand{\insertcontact}{\unbeamerpresentation@contact}%
+%<*class>
+
+%</class>
+%<class>    \renewcommand{\maketitle}{%
+%<class>        \begin{columns}[c]%
+%<class>            \column{.4\textwidth}\centering%
+%<class>                \huge \insertauthor\\%
+%<class>                \Large \insertcontact%
+%<class>            \column{.2\textwidth}\centering%
+%<class>                \includegraphics[width=.75\textwidth]{UnBMarca.pdf}%
+%<class>            \column{.4\textwidth}\centering%
+%<class>                \Large \insertinstitute%
+%<class>        \end{columns}%
+%<class>    }%
+%<*class>
+
+%</class>
+%<class>    \renewcommand{\unbeamerleftfooter}{}%
+%<class>    \renewcommand{\unbeamerrightfooter}{}%
+%<*class>
+
+%</class>
+%<class>    \newlength{\unbeamer@titlewidth}%
+%<class>    \newcommand{\setTitleFontSize}{%
+%<class>        \VERYHuge%
+%<class>        \settowidth{\unbeamer@titlewidth}{\inserttitle}%
+%<class>        \ifthenelse{\lengthtest{\paperwidth>\unbeamer@titlewidth}}{}%
+%<class>            {\VeryHuge%
+%<class>            \settowidth{\unbeamer@titlewidth}{\inserttitle}%
+%<class>            \ifthenelse{\lengthtest{\paperwidth>\unbeamer@titlewidth}}{}%
+%<class>                {\veryHuge%
+%<class>                \settowidth{\unbeamer@titlewidth}{\inserttitle}%
+%<class>                \ifthenelse{\lengthtest{\paperwidth>\unbeamer@titlewidth}}{}%
+%<class>                    {\Huge%
+%<class>                    \ifthenelse{\lengthtest{\paperwidth>\unbeamer@titlewidth}}{}%
+%<class>                        {\huge%     
+%<class>                        \ifthenelse{\lengthtest{\paperwidth>\unbeamer@titlewidth}}{}%
+%<class>                            {\LARGE%
+%<class>                            \settowidth{\unbeamer@titlewidth}{\inserttitle}%
+%<class>                            \ifthenelse{\lengthtest{\paperwidth>\unbeamer@titlewidth}}{}%
+%<class>                                {\Large%
+%<class>                                \settowidth{\unbeamer@titlewidth}{\inserttitle}%
+%<class>                                \ifthenelse{\lengthtest{\paperwidth>\unbeamer@titlewidth}}{}%
+%<class>                                    {\large}%
+%<class>                                }%
+%<class>                            }%
+%<class>                        }%
+%<class>                    }%
+%<class>                }%
+%<class>            }%
+%<class>    }%
+%<*class>
+
+%</class>
+%<class>    \newlength{\unbeamer@headerheight}%    
+%<class>    \setbeamertemplate{headline}{%
+%<class>        \leavevmode%
+%<class>        \settoheight{\unbeamer@headerheight}{\setTitleFontSize\inserttitle}%
+%<class>        \begin{tikzpicture}
+%<class>            \begin{pgfonlayer}{background}
+%<class>                \draw[top color=greenUnB,bottom color=blueUnB] (-.1\paperwidth,0) rectangle (0.9\paperwidth, 1.8\unbeamer@headerheight);
+%<class>            \end{pgfonlayer}
+%<class>            \begin{pgfonlayer}{foreground}
+%<class>                \node at (.4\paperwidth, .9\unbeamer@headerheight) {\setTitleFontSize\textcolor{white}{\inserttitle}};
+%<class>            \end{pgfonlayer}
+%<class>        \end{tikzpicture}
+%<class>    }%
+%<*class>
+
+%</class>
+%<class>    \setbeamerfont{block title}{size=\LARGE}%
+%<class> \fi\par%
+%<*class>
+
+%</class>
+%<class>% Redefinir cores dos blocos (block, alertblock e exampleblock) e possibilitar largura variável.
+%<class>\newlength{\unbeamer@previousTextWidth}%
+%<class>\let\unbeamer@oldBlock=\block%
+%<class>\let\unbeamer@endOldBlock=\endblock%
+%<class>\renewenvironment{block}[2][\textwidth]{%
+%<class>    \setlength{\unbeamer@previousTextWidth}{\textwidth}%
+%<class>    \setlength{\textwidth}{#1}%
+%<class>    \unbeamer@oldBlock{\ifx#2\@empty\else\textbf{#2}\fi}%
+%<class>}{%
+%<class>    \unbeamer@endOldBlock%
+%<class>    \setlength{\textwidth}{\unbeamer@previousTextWidth}%
+%<class>}%
+%<*class>
+
+%</class>
+%<class>\let\unbeamer@oldAlertBlock=\alertblock%
+%<class>\let\unbeamer@endOldAlertBlock=\endalertblock%
+%<class>\renewenvironment{alertblock}[2][\textwidth]{%
+%<class>    \setlength{\unbeamer@previousTextWidth}{\textwidth}%
+%<class>    \setlength{\textwidth}{#1}%
+%<class>    \unbeamer@oldAlertBlock{\ifx#2\@empty\else\textbf{#2}\fi}%
+%<class>}{%
+%<class>    \unbeamer@endOldAlertBlock%
+%<class>    \setlength{\textwidth}{\unbeamer@previousTextWidth}%
+%<class>}%
+%<class>
+%<*class>
+
+%</class>
+%<class>\let\unbeamer@oldExampleBlock=\exampleblock%
+%<class>\let\unbeamer@endOldExampleBlock=\endexampleblock%
+%<class>\renewenvironment{exampleblock}[2][\textwidth]{%
+%<class>    \setlength{\unbeamer@previousTextWidth}{\textwidth}%
+%<class>    \setlength{\textwidth}{#1}%
+%<class>    \unbeamer@oldExampleBlock{\ifx#2\@empty\else\textbf{#2}\fi}%
+%<class>}{%
+%<class>    \unbeamer@endOldExampleBlock%
+%<class>    \setlength{\textwidth}{\unbeamer@previousTextWidth}%
+%<class>}%
+%<*class>
+
+%</class>
+%<class>%% Insere um frame com uma imagem ocupando todo o espaço.
+%<class>\newcommand{\imageFrame}[1]{%
+%<class>    {\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{#1}}%
+%<class>    \begin{frame}[plain]\frametitle{\@empty}\framesubtitle{\@empty}\end{frame}}%
+%<class>}% Ex: \imageFrame{UnBMarca}%
+%<*class>
+
+%</class>
+%<class>%% Risca a palavra
+%<class>\newlength{\unbeamer@strikeLength}%
+%<class>\newcommand<>{\strikeText}[1]{%
+%<class>    \settowidth{\unbeamer@strikeLength}{#1}%
+%<class>    \mbox{#1}%
+%<class>    \only#2{\hspace{-\unbeamer@strikeLength}\rule[.5ex]{\unbeamer@strikeLength}{1pt}}%
+%<class>}% Ex: \strikeText<2->{Lorem ipsum}
+%<*class>
+
+%</class>
+%<class>%% Cria uma lista (itemize) com um único item.
+%<class>%%   #1 - símbolo do item (default: -).
+%<class>%%   #2 - texto do item.
+%<class>\newcommand{\subitem}[2][-]{%
+%<class>    \begin{itemize}%
+%<class>        \item[#1] #2%
+%<class>    \end{itemize}%
+%<class>}%% Ex: \subitem[$\rightarrow$]{Lorem Ipsum}
+%
+%<*batchfile>
+\begingroup
+\input docstrip.tex
+\keepsilent
+
+\preamble
+
+Arquivo gerado automaticamente.
+
+Copyright (C) 2012 by Guilherme N. Ramos (gnramos@unb.br)
+
+Este arquivo pode ser distribuído e/ou modificado conforme:
+    1. LaTeX Project Public License e/ou
+    2. GNU Public License.
+\endpreamble
+
+\askforoverwritefalse
+\generate{\file{UnBeamer.cls}{\from{UnBeamer.dtx}{all,class}}
+          \file{theme/beamerthemeUnB.sty}{\from{UnBeamer.dtx}{all,theme}}
+          \file{theme/beamercolorthemeUnB.sty}{\from{UnBeamer.dtx}{all,color}}
+          \file{theme/beamerfontthemeUnB.sty}{\from{UnBeamer.dtx}{all,font}}
+          \file{theme/beamerinnerthemeUnB.sty}{\from{UnBeamer.dtx}{all,inner}}
+          \file{theme/beamerouterthemeUnB.sty}{\from{UnBeamer.dtx}{all,outer}}
+          \file{ex_apresentacao.tex}{\from{UnBeamer.dtx}{presentation}}
+          \file{ex_poster.tex}{\from{UnBeamer.dtx}{poster}}
+}
+
+\obeyspaces
+\endgroup
+%</batchfile>
+%
+%<*driver>
+\documentclass{ltxdoc}%
+\usepackage[portuges]{babel}%
+\usepackage[utf8]{inputenc}%
+
+\usepackage{beamerarticle}%
+
+\usepackage{xcolor}%
+\usepackage{graphicx}%
+\usepackage[hidelinks]{hyperref}%
+\usepackage{theme/beamercolorthemeUnB}
+
+\EnableCrossrefs         
+\CodelineIndex  
+\RecordChanges
+\begin{document}
+  \DocInput{UnBeamer.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v1.0}{2012/08/20}{Versão Inicial}
+%
+% \GetFileInfo{UnBeamer.dtx}
+%
+% \DoNotIndex{\newcommand,\newenvironment}
+% 
+% \newcommand{\tema}{\textsf{\textcolor{blueUnB}{UnB}}}%
+% \newcommand{\unbeamer}{\tema{\sc{eamer}}}%
+% \newcommand{\beamer}{{\sc{beamer}}}%
+% \newcommand{\sq}[1]{\textcolor{#1}{$\blacksquare$}#1\textcolor{#1}{$\blacksquare$}}%
+%
+% \title{Tema \tema\thanks{Este documento corresponde a versão \fileversion, de \filedate.}}
+% \author{Guilherme N. Ramos \\ \texttt{gnramos@unb.br}}
+%
+% \maketitle
+%
+% \StopEventually{\PrintIndex\PrintChanges}
+%
+% \begin{abstract}
+% O tema \tema\ define a aparência de uma apresentação criada com \LaTeX\ e 
+% \beamer. A proposta é ter uma identidade unificada para apresentações cujo 
+% escopo seja relacionado a \href{http://www.unb.br}{Universidade de Brasília}, 
+% buscando um visual simples.
+% \end{abstract}
+%
+% \section{Introdução}
+% \tema\ é um tema para \beamer, a classe \LaTeX\ para criar apresentações. 
+% \unbeamer\ é uma classe que utiliza o tema \tema\ e implementa algumas 
+% facilidades para criar uma apresentação.
+%
+% \subsection{Requisitos}
+% Assume-se que a classe \beamer\footnote{Disponível em 
+% \url{http://bitbucket.org/rivanvx/beamer/}} já esteja disponível, e que haja 
+% certa familiaridade com seu uso para criar apresentações. Um pouco de 
+% conhecimento sobre \LaTeX\ também é bem vindo.
+%
+% \subsection{Instalação}
+% Basta copiar o diretório UnBeamer pra um local que \TeX\ conheça, como
+% \begin{center}\texttt{\textasciitilde/texmf/tex/latex/}\end{center}
+%
+% O diretório tem a seguinte estrutura:
+% \begin{description}
+%    \item[\texttt{UnBeamer.cls}] classe para apresentações.
+%    \item[\texttt{handoutWithNotes.sty}] pacote auxiliar da classe.
+%    \item[\texttt{theme}] diretório contendo os arquivos do tema:
+%        \begin{description}
+%            \item[\texttt{beamerthemeUnB.sty}]
+%            \item[\texttt{beamercolorUnB.sty}]
+%            \item[\texttt{beamerfontUnB.sty}]
+%            \item[\texttt{beamerinnerUnB.sty}]
+%            \item[\texttt{beamerouterUnB.sty}]
+%        \end{description}
+%    \item[\texttt{ex\_apresentacao.tex}] exemplo de como criar uma apresentação.
+%    \item[\texttt{ex\_poster.tex}] exemplo de como criar um pôster.
+% \end{description}
+%
+% O pacote exige o arquivo \texttt{UnBMarca.pdf} contendo a imagem da marca da UnB.
+%
+% \section{Tema \protect\tema}
+% Um tema para \beamer\ define, conceitualmente, todos os detalhes da aparência 
+% uma apresentação. O tema \tema\ seleciona as características dos subtemas que,
+% juntos, proporcionam um conjunto agradável (na opinião do criador). Por exemplo, 
+% uma escolha definiria quais números (e em que cores e fontes) seriam 
+% utilizados em uma enumeração, se há alguma imagem relacionada a isto, etc. 
+%
+% \subsection{Marca UnB}
+% A \href{http://www.marca.unb.br/}{marca UnB} é o item principal da identidade 
+% visual da universidade, e tem suas características bem definidas para que haja
+% a normatização de seu uso da marca UnB e a uniformização dos padrões de 
+% comunicação visual da universidade.
+%
+% Essencialmente, \beamer\ utiliza um tema para cada aspecto da apresentação, 
+% portanto é simples mudar a aparência desta (ou apenas determinadas partes).
+%
+% A marca serve de base para os tons de verde e azul do tema.
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[scale=0.5]{UnBMarca}
+%     \caption{Arquivo \texttt{UnBMarca.pdf}.}
+% \end{figure}
+%
+% A UnB fornece, gratuitamente, duas famílias tipográficas oficiais: UnB Office 
+% e UnB Pro, que são compatíveis com os sistemas operacionais Linux, Windows e 
+% MacOS. Elas podem ser utilizadas com Xe\TeX\footnote{http://tug.org/xetex/}.
+%
+% \subsection{Cor}
+% Um tema de cores define quais cores são usadas na apresentação, possivelmente
+% com detalhes muito específicos. \tema\ define a paleta de cores do tema, 
+% ajustando os itens da apresentação conforme três cores básicas:\\
+% \sq{redUnB}\hfill\sq{greenUnB}\hfill\sq{blueUnB}
+%
+% \subsection{Fonte}
+% Um tema de fontes define as fontes a serem utilizadas nos itens da apresentação, 
+% ajustando tamanhos conforme a paleta de cores definida (mas podem ser 
+% especificados de forma independente).
+%
+% \subsection{Estrutura Interna}
+% Define os detalhes das estruturas internas ao frame (onde fica o conteúdo), 
+% tais como itens e enumerações. São as partes da apresentação que não estão no
+% cabeçalho ou rodapé (já que \tema\ não implementa barras laterais).
+%
+% \subsection{Estrutura Externa}
+% Define os detalhes das estruturas externas ao frame. Redefine o título do frame 
+% como o nome da subseção, se houver, como o nome da seção caso contrário. Define 
+% o rodapé como um bloco de três partes em que:
+% \begin{itemize}
+%    \item a esquerda (25\% da área) há um indicador da unidade acadêmica;
+%    \item ao centro (50\% da área) há o nome da seção do frame,
+%    \item a direita (25\% da área) há um indicador da página do frame.
+% \end{itemize}
+% Estes blocos são definidos pelos comandos\footnote{Podem ser alterados via 
+% |{\textbackslash}renewcommand|.}: \\
+% |\unbeamerleftfooter|, |\unbeamercentralfooter| e |\unbeamerrightfooter|.
+%
+% \section{Classe \protect\unbeamer}
+% A classe adiciona certas facilidades para deixar a utilização do tema \tema\ 
+% ainda menos complexa.
+
+% \subsection{Opções}
+% A classe \unbeamer\ oferece algumas opções de uso que alteram a formatação 
+% resultante. Todas as opções fornecidas a classe serão repassadas a classe 
+% \beamer, exceto pelas seguintes:
+% \begin{macro}{notasDeAula} Formata o arquivo PDF resultante com 4 frames por 
+% página, com orientação de \emph{paisagem}. Esta opção é a melhor forma de 
+% disponibilizar os frames como material auxiliar para acompanhar as apresentações.
+% \end{macro}
+%
+% \begin{macro}{comAnotacoes} Formata o arquivo PDF resultante com 4 frames por 
+% página, com orientação de \emph{retrato}, com linhas para anotações ao lado de 
+% cada frame. Esta opção é a melhor forma de disponibilizar os frames como 
+% material auxiliar de estudo das apresentações.
+% \end{macro}
+%
+% \begin{macro}{mostraConteudo} Insere na apresentação, antes de cada nova seção, 
+% um frame contendo o conteúdo (índice) da mesma.
+% \end{macro}
+%
+% \begin{macro}{poster} Formata o arquivo PDF resultante como um pôster no tamanho 
+% \href{https://pt.wikipedia.org/wiki/ISO_216}{A0}, a ser preenchido como um único
+% frame. Formata o título e o autor, implementando os comandos |\contact| e 
+% |\insertcontact|.
+% \end{macro}
+%
+% \subsection{Blocos}
+% Os principais blocos são redefinidos para aceitarem um argumento opcional de 
+% largura. O valor padrão é |\textwidth|
+%
+% \begin{macro}{block} Bloco em tons de azul.
+% \end{macro}
+%
+% \begin{macro}{alertblock} Bloco em tons de vermelho.
+% \end{macro}
+%
+% \begin{macro}{exampleblock} Bloco em tons de verde.
+% \end{macro}
+%
+% A utilização é trival:\par\vspace{1ex}
+% |\begin|\{block\}[3cm]\{Exemplo de Aplicação\}\par
+% \ \ \ \ Basta indicar a largura do bloco como argument opcional.\par
+% |\end|\{block\}
+%
+% \subsection{Comandos Auxiliares}
+% A classe \unbeamer\ define alguns comandos úteis em apresentações.
+%
+% \begin{macro}{\imageFrame} \marg{imagem}\\
+% Insere um frame com a imagem dada ocupando todo o espaço.
+% \end{macro}
+%
+% \begin{macro}{\strikeText<>} \marg{texto}\\
+% Risca o texto dado. Aceita o parâmetro opcional indicando a partir de qual 
+% instante o texto deve ser riscado.
+% \end{macro}
+%
+% \begin{macro}{\subitem} \oarg{símbolo} \marg{texto}\\
+% Cria uma lista (itemize) com um único item.
+% \end{macro}
+%
+% \subsection{Exemplo de Apresentação}
+% O arquivo \texttt{ex\_apresentacao.tex} mostra uma apresentação com o tema \tema\ e 
+% exemplifica as ``facilidades'' possíveis com a classe \unbeamer. Idealmente, 
+% tenha uma cópia do arquivo PDF gerado por ele para verificar os resultados da 
+% formatação descrita aqui.
+%
+% O início\footnote{Na verdade, para utilizar apenas o tema, este comando seria 
+% substituído por:\\
+% |{\textbackslash}documentclass\{beamer\}|\\
+% |{\textbackslash}usetheme\{UnB\}|}.
+% não é surpreendente...
+%\setcounter{CodelineNo}{-1}
+%    \begin{macrocode}
+%<*presentation>
+%    \end{macrocode}
+%    \begin{macrocode}
+%% Exemplo de utilização do tema UnB.
+\documentclass{UnBeamer}%
+
+%    \end{macrocode}
+%
+% Como o texto é na língua portuguesa:
+%    \begin{macrocode}
+\usepackage[brazilian]{babel}%
+\usepackage[utf8]{inputenc}%
+
+%    \end{macrocode}
+%
+% Identificação da apresentação. Elas podem (e vão) ser aproveitadas em outros 
+% momentos.
+%    \begin{macrocode}
+%% ------------ Autor, Título, etc. ------------ %%
+\title[Beamer + UnB]{Tema/Classe para apresentações utilizando Beamer}%
+\subtitle{Exemplo Funcional}%
+\author[gnramos]{Guilherme N. Ramos\\%
+                 \texttt{gnramos@unb.br}}%
+\institute[CIC]{Departamento de Ciência da Computação\\%
+                Universidade de Brasília}%
+\date[2012]{}%
+
+%    \end{macrocode}
+%
+% Comando auxiliar:
+%    \begin{macrocode}
+%% Formata um comando.
+\makeatletter%
+\newcommand{\comm}[2][]{%
+    \texttt{{\textbackslash}#2}%
+    \if#1\@empty%
+    \else\{#1\}\fi%
+}%
+\makeatother
+
+%    \end{macrocode}
+%
+% O passo seguinte é começar o documento:
+%    \begin{macrocode}
+%% ------------ Documento ------------ %%
+\begin{document}%
+%    \end{macrocode}
+%
+% Pronto. De agora em diante basta definir o conteúdo dos frames. Como toda boa 
+% apresentação, vamos começar indicando título, autores e filiações. Isso evita 
+% que alguém saia no meio da apresentação por estar na sala errada...
+%    \begin{macrocode}
+  \frame{\titlepage}%
+
+%    \end{macrocode}
+%
+% Agora seria uma boa hora para reler o 
+% \href{http://www.tex.ac.uk/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}{manual do beamer}, 
+% há ótimas sugestões para se criar uma apresentação (outras 
+% \href{http://research.microsoft.com/pubs/67052/giving-a-talk-slides.pdf}{aqui}).
+% Como aqui o escopo é apenas o uso do tema e da classe, vamos em frente:
+%    \begin{macrocode}
+  \section{Tema UnB}%
+  \begin{frame}%
+    \begin{itemize}%
+      \item Simples%
+      \item Definição automática:%
+        \begin{itemize}%
+          \item título: nome da [sub]seção%
+          \item rodapé: versão curta do título - nome da seção%
+        \end{itemize}%
+      \item Rodapé%
+        \begin{description}%
+          \item[\comm{unbeamerleftfooter}] instituto%
+          \item[\comm{unbeamercentralfooter}] título resumido - nome da seção%
+          \item[\comm{unbeamerrightfooter}] número de páginas/total de páginas%
+        \end{description}%
+      \item Definição de cores %
+      \item Definição de listas%
+    \end{itemize}%
+  \end{frame}%
+
+%    \end{macrocode}
+%
+% E agora um novo frame para exibir o tema.
+%    \begin{macrocode}
+  \section{Listas \& Cores}%
+  \begin{frame}%
+    \begin{columns}[T]%
+      \column{.45\textwidth}%
+        Itens:\\%
+        \begin{itemize}%
+          \item {\color{redUnB}redUnB}%
+          \begin{itemize}%
+            \item {\color{greenUnB}greenUnB}%
+            \begin{itemize}%
+              \item {\color{blueUnB}blueUnB}%
+            \end{itemize}%
+          \end{itemize}%
+        \end{itemize}%
+      \column{.45\textwidth}%
+        Enumerações:%
+        \begin{enumerate}%
+          \item \colorbox{redUnB}{\color{white}{redUnB}}%
+          \begin{enumerate}%
+            \item \colorbox{greenUnB}{\color{white}{greenUnB}}%
+            \begin{enumerate}%
+              \item \colorbox{blueUnB}{\color{white}{blueUnB}}%
+            \end{enumerate}%
+          \end{enumerate}%
+        \end{enumerate}%
+    \end{columns}%
+    \vfill%
+    Descrições:%
+    \begin{description}%
+      \item[Beamer] é uma classe.%
+      \item[UnBeamer] é outra classe que redefine algumas características%
+      para apresentações em Beamer%
+    \end{description}%
+  \end{frame}%
+
+%    \end{macrocode}
+% (Alguém reparou que não houve comandos para definir título ou rodapé?)
+%
+% E agora uma nova seção com subseções para exibir a classe (se não reparou antes,
+% agora é a hora).
+%    \begin{macrocode}
+  \section{UnBeamer}%
+  \subsection{Blocos}%
+  \begin{frame}%
+    \framesubtitle{(para a classe UnBeamer)}%
+    \begin{alertblock}[.5\textwidth]{alertblock}%
+      E agora os blocos%
+    \end{alertblock}%
+    \vfill\pause%
+    \begin{exampleblock}[.75\textwidth]{exampleblock}%
+      destacam a informação%
+    \end{exampleblock}%
+    \vfill\pause%
+    \begin{block}{block}%
+      com largura [opcional] variável.%
+    \end{block}%
+  \end{frame}%
+
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+  \renewcommand{\unbeamerleftfooter}{\colorbox{redUnB}{\color{white}{\secname}}}%
+
+  \subsection{Comandos}%
+  \begin{frame}%
+    Mudança da parte central do rodapé (que continua atualizado com o 
+    nome da seção).%
+    \subitem[$\rightarrow$]{%
+        \comm[\protect{\comm{unbeamerleftfooter}}]{renewcommand}%
+        \footnote[frame]{Exemplo de uso do comando \comm{subitem}.}}%
+    \vfill%
+    \begin{columns}%
+      \column{.35\textwidth}%
+        Inclusão de um pouco de texto...\\\vfill%
+        ... e de uma imagem \strikeText{para ocupar espaço}\footnote[frame]{Exemplo% 
+        de uso do comando \comm{strikeText}.}.%
+      \column{.45\textwidth}%
+        \includegraphics[width=\textwidth]{UnBMarca}%
+    \end{columns}%
+    \vfill%
+    E no slide seguinte, o resultado do comando \comm{imageFrame}.%
+  \end{frame}%
+
+  \imageFrame{UnBMarca}%
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\end{document}%
+%    \end{macrocode}
+%    \begin{macrocode}
+%</presentation>
+%    \end{macrocode}
+%
+% \subsection{Exemplo de Pôster}
+% O arquivo \texttt{ex\_poster.tex} mostra um pôster o tema \tema.
+%
+%\setcounter{CodelineNo}{-1}
+%    \begin{macrocode}
+%<*poster>
+%    \end{macrocode}
+%    \begin{macrocode}
+\documentclass[poster]{UnBeamer}%
+
+\usepackage[utf8]{inputenc}%
+
+\title{A Parallel Approach to Clustering with ACO}%
+\author{Guilherme N. Ramos}%
+\contact{\texttt{gnramos@unb.br}}%
+\institute[UnB/CIC]{Dept. of Computer Science\\%
+                    Institute of Sciences\\%
+                    University of Brasília}%
+
+%    \end{macrocode}
+% O pôster é tratado como um único grande frame.
+%    \begin{macrocode}
+\begin{document}
+    \begin{frame}
+        \maketitle%
+
+        \vfill\Large%
+
+        \begin{columns}%
+            \column{.3\textwidth}%
+                \begin{alertblock}{Hyperbox}%
+                    \begin{itemize}%
+                        \item Simple%
+                        \item Straightforward interpretation%
+                    \end{itemize}%
+                \end{alertblock}%
+            \column{.3\textwidth}%
+                \begin{alertblock}{Ant Colony}%
+                    \begin{itemize}%
+                        \item Multi-agent%
+                        \item Optimization Meta-heuristic%
+                    \end{itemize}%
+                \end{alertblock}%
+            \column{.3\textwidth}%
+                \begin{block}{HACO\textcolor{blueUnB}{g}}%
+                    \begin{itemize}%
+                        \item Clustering%
+                        \item Classification\textcolor{blueUnB!10}{g}%
+                    \end{itemize}%
+                \end{block}%
+        \end{columns}%
+        \vfill%
+        \begin{exampleblock}{//HACO}%
+            Parallel implementation of HACO using MPI, focusing on communication%
+            strategies in order to improve the results.%
+        \end{exampleblock}%
+        \vfill%
+    \end{frame}%
+\end{document}%
+%    \end{macrocode}
+%    \begin{macrocode}
+%</poster>
+%    \end{macrocode}
+%
+% \Finale
+%
+% \typeout{}
+% \typeout{}
+% \typeout{******************************************************************}
+% \typeout{* Para gerar os arquivos e a documentacao, processe UnBeamer.dtx *}
+% \typeout{* no LaTeX.                                                      *}
+% \typeout{*                                                                *}
+% \typeout{* Para terminar a instalacao, copie o diretorio UnBeamer para um *}
+% \typeout{* diretorio conhecido por TeX (ex: /usr/local/lib/texmf).        *}
+% \typeout{******************************************************************}
+% \typeout{}
+% \typeout{}
+\endinput
