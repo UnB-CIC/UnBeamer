@@ -19,18 +19,23 @@ Para instalar, basta seguir os seguintes passos:
 
 - Descompactar o arquivo para [diretório local](http://tug.org/tds/tds.html) (no caso do [MikTeX](http://miktex.org/), vejam [aqui](http://docs.miktex.org/manual/localadditions.html)).
 
-    unzip UnBeamer-master.zip -d ~/texmf/tex/latex
+```bash
+unzip UnBeamer-master.zip -d ~/texmf/tex/latex
+```
 
 - Gerar a documentação e os arquivos da classe e tema.
 
-    cd ~/texmf/tex/latex
-    pdflatex UnBeamer.dtx
+```bash
+cd ~/texmf/tex/latex
+pdflatex UnBeamer.dtx
+```
 
 - Embora desnecessário nas versões mais recentes do [TeX Live](https://www.tug.org/texlive/), 
 pode ser preciso atualizar os registros. 
 
-    texhash ~/texmf
-
+```bash
+texhash ~/texmf
+```
 
 Veja a documentação gerada (arquivo UnBeamer.pdf) para instruções e exemplos de uso. No caso do MikTeX, os exemplos gerados não devem ser compilados dentro da TDS (é só movê-los para, por exemplo, o diretório "Meus Documentos").
 
