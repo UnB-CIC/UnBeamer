@@ -249,13 +249,14 @@
 %<outer>            \else%
 %<outer>                \insertshorttitle%
 %<outer>            \fi%
-%<outer>            \@ifundefined{secname}{}{%
+%<outer>            \ifx\secname\@empty%
+%<outer>            \else%
 %<outer>                \ifx\insertshorttitle\@empty%
 %<outer>                \else%
 %<outer>                    \ -\ %
 %<outer>                \fi%
 %<outer>                \secname%
-%<outer>            }%
+%<outer>            \fi%
 %<outer>        \fi%
 %<outer>    }%
 %<*outer>
@@ -537,7 +538,6 @@
 %<class>    \unbeamer@endOldAlertBlock%
 %<class>    \setlength{\textwidth}{\unbeamer@previousTextWidth}%
 %<class>}%
-%<class>
 %<*class>
 
 %</class>
@@ -559,6 +559,17 @@
 %<class>    {\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{#1}}%
 %<class>    \begin{frame}[plain]\frametitle{\@empty}\framesubtitle{\@empty}\end{frame}}%
 %<class>}% Ex: \imageFrame{UnBMarca}%
+%<*class>
+
+%</class>
+%<class>%% Insere um frame com uma imagem ocupando todo o espaço vertical e centraliza horizontalmente.
+%<class>\newcommand{\vertImageFrame}[1]{%
+%<class>    {\usebackgroundtemplate{%
+%<class>    \vbox to \paperheight{%
+%<class>    \hbox to \paperwidth{%
+%<class>    \hfil\includegraphics[height=\paperheight]{#1}\hfil}}}%
+%<class>    \begin{frame}[plain]\frametitle{\@empty}\framesubtitle{\@empty}\end{frame}}%
+%<class>}% Ex: \vertImageFrame{UnBMarca}%
 %<*class>
 
 %</class>
