@@ -19,6 +19,8 @@
 %</all>
 %
 %<theme>\ProvidesPackage{beamerthemeUnB}[2011/08/01 Tema para apresentações usando Beamer no estilo UnB.]%
+%<theme>
+%<theme>\ProvidesFile{UnBMarca.pdf}%
 %<*theme>
 
 %</theme>
@@ -214,7 +216,7 @@
 %<outer>            \ifx\subsecname\@empty%
 %<outer>            \else%
 %<outer>                \frametitle{\subsecname}%
-%<outer>                \ifx\subsubsecname\@empty%                    
+%<outer>                \ifx\subsubsecname\@empty%
 %<outer>                \else%
 %<outer>                    \framesubtitle{\subsubsecname}%
 %<outer>                \fi%
@@ -296,7 +298,7 @@
 
 %</outer>
 %<outer>%% Jérôme LELONG (September 2007)
-%<outer>%% 
+%<outer>%%
 %<outer>%% this stuff fixes the frame numbering in beamer when using an appendix such
 %<outer>%% that the slides of the appendix are not counted in the total framenumber
 %<*outer>
@@ -394,7 +396,7 @@
 %<class>    {% não é possível usar algumas opções.
 %<class>        \ClassError{UnBeamer}%
 %<class>        {Arquivo 'handoutWithNotes.sty' não encontrado.}%
-%<class>        {O arquivo é fornecido no arquivo ZIP do tema UnBeamer, mas pode 
+%<class>        {O arquivo é fornecido no arquivo ZIP do tema UnBeamer, mas pode
 %<class>        ser encontrado em http://www.guidodiepen.nl/2009/07/creating-latex-beamer-handouts-with-notes/ .}%
 %<class>    }%
 %<class>    \RequirePackage{etex}%
@@ -422,7 +424,7 @@
 %<*class>
 
 %</class>
-%<class>\ifcsname unbeamer@poster\endcsname 
+%<class>\ifcsname unbeamer@poster\endcsname
 %<class>    \RequirePackage[orientation=\unbeamer@posterorientation,size=a0,scale=1.4]{beamerposter}%
 %<class>    \RequirePackage{tikz}%
 %<class>    \RequirePackage{ifthen}%
@@ -473,7 +475,7 @@
 %<class>                \ifthenelse{\lengthtest{\paperwidth>\unbeamer@titlewidth}}{}%
 %<class>                    {\Huge%
 %<class>                    \ifthenelse{\lengthtest{\paperwidth>\unbeamer@titlewidth}}{}%
-%<class>                        {\huge%     
+%<class>                        {\huge%
 %<class>                        \ifthenelse{\lengthtest{\paperwidth>\unbeamer@titlewidth}}{}%
 %<class>                            {\LARGE%
 %<class>                            \settowidth{\unbeamer@titlewidth}{\inserttitle}%
@@ -492,7 +494,7 @@
 %<*class>
 
 %</class>
-%<class>    \newlength{\unbeamer@headerheight}%    
+%<class>    \newlength{\unbeamer@headerheight}%
 %<class>    \setbeamertemplate{headline}{%
 %<class>        \leavevmode%
 %<class>        \settoheight{\unbeamer@headerheight}{\setTitleFontSize\inserttitle}%
@@ -555,9 +557,9 @@
 
 %</class>
 %<class>%% Insere um frame com uma imagem ocupando todo o espaço.
-%<class>\newcommand{\imageFrame}[1]{%
-%<class>    {\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{#1}}%
-%<class>    \begin{frame}[plain]\frametitle{\@empty}\framesubtitle{\@empty}\end{frame}}%
+%<class>\newcommand<>{\imageFrame}[1]{%
+%<class>    \only#2{{\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{#1}}%
+%<class>    \begin{frame}#2[plain]\frametitle{\@empty}\framesubtitle{\@empty}\end{frame}}}%
 %<class>}% Ex: \imageFrame{UnBMarca}%
 %<*class>
 
@@ -586,10 +588,10 @@
 %<class>%% Cria uma lista (itemize) com um único item.
 %<class>%%   #1 - símbolo do item (default: -).
 %<class>%%   #2 - texto do item.
-%<class>\newcommand{\subitem}[2][-]{%
-%<class>    \begin{itemize}%
+%<class>\newcommand<>{\subitem}[2][-]{%
+%<class>    \only#3{\begin{itemize}%
 %<class>        \item[#1] #2%
-%<class>    \end{itemize}%
+%<class>    \end{itemize}}%
 %<class>}%% Ex: \subitem[$\rightarrow$]{Lorem Ipsum}
 %
 %<*batchfile>
@@ -635,8 +637,8 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 \usepackage[hidelinks]{hyperref}%
 \usepackage{theme/beamercolorthemeUnB}
 
-\EnableCrossrefs         
-\CodelineIndex  
+\EnableCrossrefs
+\CodelineIndex
 \RecordChanges
 \begin{document}
   \DocInput{UnBeamer.dtx}
@@ -668,7 +670,7 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 % \GetFileInfo{UnBeamer.dtx}
 %
 % \DoNotIndex{\newcommand,\newenvironment}
-% 
+%
 % \newcommand{\tema}{\textsf{\textcolor{blueUnB}{UnB}}}%
 % \newcommand{\unbeamer}{\tema{\sc{eamer}}}%
 % \newcommand{\beamer}{{\sc{beamer}}}%
@@ -682,21 +684,21 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 % \StopEventually{\PrintIndex\PrintChanges}
 %
 % \begin{abstract}
-% O tema \tema\ define a aparência de uma apresentação criada com \LaTeX\ e 
-% \beamer. A proposta é ter uma identidade unificada para apresentações cujo 
-% escopo seja relacionado a \href{http://www.unb.br}{Universidade de Brasília}, 
+% O tema \tema\ define a aparência de uma apresentação criada com \LaTeX\ e
+% \beamer. A proposta é ter uma identidade unificada para apresentações cujo
+% escopo seja relacionado a \href{http://www.unb.br}{Universidade de Brasília},
 % buscando um visual simples.
 % \end{abstract}
 %
 % \section{Introdução}
-% \tema\ é um tema para \beamer, a classe \LaTeX\ para criar apresentações. 
-% \unbeamer\ é uma classe que utiliza o tema \tema\ e implementa algumas 
+% \tema\ é um tema para \beamer, a classe \LaTeX\ para criar apresentações.
+% \unbeamer\ é uma classe que utiliza o tema \tema\ e implementa algumas
 % facilidades para criar uma apresentação.
 %
 % \subsection{Requisitos}
-% Assume-se que a classe \beamer\footnote{Disponível em 
-% \url{http://bitbucket.org/rivanvx/beamer/}} já esteja disponível, e que haja 
-% certa familiaridade com seu uso para criar apresentações. Um pouco de 
+% Assume-se que a classe \beamer\footnote{Disponível em
+% \url{http://bitbucket.org/rivanvx/beamer/}} já esteja disponível, e que haja
+% certa familiaridade com seu uso para criar apresentações. Um pouco de
 % conhecimento sobre \LaTeX\ também é bem vindo.
 %
 % \subsection{Instalação}
@@ -722,19 +724,19 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 % O pacote exige o arquivo \texttt{UnBMarca.pdf} contendo a imagem da marca da UnB.
 %
 % \section{Tema \protect\tema}
-% Um tema para \beamer\ define, conceitualmente, todos os detalhes da aparência 
+% Um tema para \beamer\ define, conceitualmente, todos os detalhes da aparência
 % uma apresentação. O tema \tema\ seleciona as características dos subtemas que,
-% juntos, proporcionam um conjunto agradável (na opinião do criador). Por exemplo, 
-% uma escolha definiria quais números (e em que cores e fontes) seriam 
-% utilizados em uma enumeração, se há alguma imagem relacionada a isto, etc. 
+% juntos, proporcionam um conjunto agradável (na opinião do criador). Por exemplo,
+% uma escolha definiria quais números (e em que cores e fontes) seriam
+% utilizados em uma enumeração, se há alguma imagem relacionada a isto, etc.
 %
 % \subsection{Marca UnB}
-% A \href{http://www.marca.unb.br/}{marca UnB} é o item principal da identidade 
+% A \href{http://www.marca.unb.br/}{marca UnB} é o item principal da identidade
 % visual da universidade, e tem suas características bem definidas para que haja
-% a normatização de seu uso da marca UnB e a uniformização dos padrões de 
+% a normatização de seu uso da marca UnB e a uniformização dos padrões de
 % comunicação visual da universidade.
 %
-% Essencialmente, \beamer\ utiliza um tema para cada aspecto da apresentação, 
+% Essencialmente, \beamer\ utiliza um tema para cada aspecto da apresentação,
 % portanto é simples mudar a aparência desta (ou apenas determinadas partes).
 %
 % A marca serve de base para os tons de verde e azul do tema.
@@ -744,70 +746,70 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 %     \caption{Arquivo \texttt{UnBMarca.pdf}.}
 % \end{figure}
 %
-% A UnB fornece, gratuitamente, duas famílias tipográficas oficiais: UnB Office 
-% e UnB Pro, que são compatíveis com os sistemas operacionais Linux, Windows e 
+% A UnB fornece, gratuitamente, duas famílias tipográficas oficiais: UnB Office
+% e UnB Pro, que são compatíveis com os sistemas operacionais Linux, Windows e
 % MacOS. Elas podem ser utilizadas com Xe\TeX\footnote{http://tug.org/xetex/}.
 %
 % \subsection{Cor}
 % Um tema de cores define quais cores são usadas na apresentação, possivelmente
-% com detalhes muito específicos. \tema\ define a paleta de cores do tema, 
+% com detalhes muito específicos. \tema\ define a paleta de cores do tema,
 % ajustando os itens da apresentação conforme três cores básicas:\\
 % \sq{redUnB}\hfill\sq{greenUnB}\hfill\sq{blueUnB}
 %
 % \subsection{Fonte}
-% Um tema de fontes define as fontes a serem utilizadas nos itens da apresentação, 
-% ajustando tamanhos conforme a paleta de cores definida (mas podem ser 
+% Um tema de fontes define as fontes a serem utilizadas nos itens da apresentação,
+% ajustando tamanhos conforme a paleta de cores definida (mas podem ser
 % especificados de forma independente).
 %
 % \subsection{Estrutura Interna}
-% Define os detalhes das estruturas internas ao frame (onde fica o conteúdo), 
+% Define os detalhes das estruturas internas ao frame (onde fica o conteúdo),
 % tais como itens e enumerações. São as partes da apresentação que não estão no
 % cabeçalho ou rodapé (já que \tema\ não implementa barras laterais).
 %
 % \subsection{Estrutura Externa}
-% Define os detalhes das estruturas externas ao frame. Redefine o título do frame 
-% como o nome da subseção, se houver, como o nome da seção caso contrário. Define 
+% Define os detalhes das estruturas externas ao frame. Redefine o título do frame
+% como o nome da subseção, se houver, como o nome da seção caso contrário. Define
 % o rodapé como um bloco de três partes em que:
 % \begin{itemize}
 %    \item a esquerda (25\% da área) há um indicador da unidade acadêmica;
 %    \item ao centro (50\% da área) há o nome da seção do frame,
 %    \item a direita (25\% da área) há um indicador da página do frame.
 % \end{itemize}
-% Estes blocos são definidos pelos comandos\footnote{Podem ser alterados via 
+% Estes blocos são definidos pelos comandos\footnote{Podem ser alterados via
 % |{\textbackslash}renewcommand|.}: \\
 % |\unbeamerleftfooter|, |\unbeamercentralfooter| e |\unbeamerrightfooter|.
 %
 % \section{Classe \protect\unbeamer}
-% A classe adiciona certas facilidades para deixar a utilização do tema \tema\ 
+% A classe adiciona certas facilidades para deixar a utilização do tema \tema\
 % ainda menos complexa.
 
 % \subsection{Opções}
-% A classe \unbeamer\ oferece algumas opções de uso que alteram a formatação 
-% resultante. Todas as opções fornecidas a classe serão repassadas a classe 
+% A classe \unbeamer\ oferece algumas opções de uso que alteram a formatação
+% resultante. Todas as opções fornecidas a classe serão repassadas a classe
 % \beamer, exceto pelas seguintes:
-% \begin{macro}{notasDeAula} Formata o arquivo PDF resultante com 4 frames por 
-% página, com orientação de \emph{paisagem}. Esta opção é a melhor forma de 
+% \begin{macro}{notasDeAula} Formata o arquivo PDF resultante com 4 frames por
+% página, com orientação de \emph{paisagem}. Esta opção é a melhor forma de
 % disponibilizar os frames como material auxiliar para acompanhar as apresentações.
 % \end{macro}
 %
-% \begin{macro}{comAnotacoes} Formata o arquivo PDF resultante com 4 frames por 
-% página, com orientação de \emph{retrato}, com linhas para anotações ao lado de 
-% cada frame. Esta opção é a melhor forma de disponibilizar os frames como 
+% \begin{macro}{comAnotacoes} Formata o arquivo PDF resultante com 4 frames por
+% página, com orientação de \emph{retrato}, com linhas para anotações ao lado de
+% cada frame. Esta opção é a melhor forma de disponibilizar os frames como
 % material auxiliar de estudo das apresentações.
 % \end{macro}
 %
-% \begin{macro}{mostraConteudo} Insere na apresentação, antes de cada nova seção, 
+% \begin{macro}{mostraConteudo} Insere na apresentação, antes de cada nova seção,
 % um frame contendo o conteúdo (índice) da mesma.
 % \end{macro}
 %
-% \begin{macro}{poster} Formata o arquivo PDF resultante como um pôster no tamanho 
+% \begin{macro}{poster} Formata o arquivo PDF resultante como um pôster no tamanho
 % \href{https://pt.wikipedia.org/wiki/ISO_216}{A0}, a ser preenchido como um único
-% frame. Formata o título e o autor, implementando os comandos |\contact| e 
+% frame. Formata o título e o autor, implementando os comandos |\contact| e
 % |\insertcontact|.
 % \end{macro}
 %
 % \subsection{Blocos}
-% Os principais blocos são redefinidos para aceitarem um argumento opcional de 
+% Os principais blocos são redefinidos para aceitarem um argumento opcional de
 % largura. O valor padrão é |\textwidth|
 %
 % \begin{macro}{block} Bloco em tons de azul.
@@ -832,7 +834,7 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 % \end{macro}
 %
 % \begin{macro}{\strikeText<>} \marg{texto}\\
-% Risca o texto dado. Aceita o parâmetro opcional indicando a partir de qual 
+% Risca o texto dado. Aceita o parâmetro opcional indicando a partir de qual
 % instante o texto deve ser riscado.
 % \end{macro}
 %
@@ -841,12 +843,12 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 % \end{macro}
 %
 % \subsection{Exemplo de Apresentação}
-% O arquivo \texttt{ex\_apresentacao.tex} mostra uma apresentação com o tema \tema\ e 
-% exemplifica as ``facilidades'' possíveis com a classe \unbeamer. Idealmente, 
-% tenha uma cópia do arquivo PDF gerado por ele para verificar os resultados da 
+% O arquivo \texttt{ex\_apresentacao.tex} mostra uma apresentação com o tema \tema\ e
+% exemplifica as ``facilidades'' possíveis com a classe \unbeamer. Idealmente,
+% tenha uma cópia do arquivo PDF gerado por ele para verificar os resultados da
 % formatação descrita aqui.
 %
-% O início\footnote{Na verdade, para utilizar apenas o tema, este comando seria 
+% O início\footnote{Na verdade, para utilizar apenas o tema, este comando seria
 % substituído por:\\
 % |{\textbackslash}documentclass\{beamer\}|\\
 % |{\textbackslash}usetheme\{UnB\}|}.
@@ -868,7 +870,7 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 
 %    \end{macrocode}
 %
-% Identificação da apresentação. Elas podem (e vão) ser aproveitadas em outros 
+% Identificação da apresentação. Elas podem (e vão) ser aproveitadas em outros
 % momentos.
 %    \begin{macrocode}
 %% ------------ Autor, Título, etc. ------------ %%
@@ -901,17 +903,17 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 \begin{document}%
 %    \end{macrocode}
 %
-% Pronto. De agora em diante basta definir o conteúdo dos frames. Como toda boa 
-% apresentação, vamos começar indicando título, autores e filiações. Isso evita 
+% Pronto. De agora em diante basta definir o conteúdo dos frames. Como toda boa
+% apresentação, vamos começar indicando título, autores e filiações. Isso evita
 % que alguém saia no meio da apresentação por estar na sala errada...
 %    \begin{macrocode}
   \frame{\titlepage}%
 
 %    \end{macrocode}
 %
-% Agora seria uma boa hora para reler o 
-% \href{http://www.tex.ac.uk/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}{manual do beamer}, 
-% há ótimas sugestões para se criar uma apresentação (outras 
+% Agora seria uma boa hora para reler o
+% \href{http://www.tex.ac.uk/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}{manual do beamer},
+% há ótimas sugestões para se criar uma apresentação (outras
 % \href{http://research.microsoft.com/pubs/67052/giving-a-talk-slides.pdf}{aqui}).
 % Como aqui o escopo é apenas o uso do tema e da classe, vamos em frente:
 %    \begin{macrocode}
@@ -1004,7 +1006,7 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 
   \subsection{Comandos}%
   \begin{frame}%
-    Mudança da parte central do rodapé (que continua atualizado com o 
+    Mudança da parte central do rodapé (que continua atualizado com o
     nome da seção).%
     \subitem[$\rightarrow$]{%
         \comm[\protect{\comm{unbeamerleftfooter}}]{renewcommand}%
@@ -1013,7 +1015,7 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
     \begin{columns}%
       \column{.35\textwidth}%
         Inclusão de um pouco de texto...\\\vfill%
-        ... e de uma imagem \strikeText{para ocupar espaço}\footnote[frame]{Exemplo% 
+        ... e de uma imagem \strikeText{para ocupar espaço}\footnote[frame]{Exemplo%
         de uso do comando \comm{strikeText}.}.%
       \column{.45\textwidth}%
         \includegraphics[width=\textwidth]{UnBMarca}%
