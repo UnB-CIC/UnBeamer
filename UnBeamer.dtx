@@ -247,18 +247,7 @@
 %<outer>        % rodapé central, ocupa 50% do espaço.
 %<outer>        \usebeamerfont{title in head/foot}%
 %<outer>        \ifnum\c@framenumber>1%
-%<outer>            \ifx\insertshorttitle\@empty%
-%<outer>            \else%
-%<outer>                \insertshorttitle%
-%<outer>            \fi%
-%<outer>            \ifx\secname\@empty%
-%<outer>            \else%
-%<outer>                \ifx\insertshorttitle\@empty%
-%<outer>                \else%
-%<outer>                    \ -\ %
-%<outer>                \fi%
-%<outer>                \secname%
-%<outer>            \fi%
+%<outer>            \insertauthor%
 %<outer>        \fi%
 %<outer>    }%
 %<*outer>
