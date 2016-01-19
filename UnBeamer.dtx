@@ -557,20 +557,24 @@
 
 %</class>
 %<class>%% Insere um frame com uma imagem ocupando todo o espaço.
-%<class>\newcommand<>{\imageFrame}[1]{%
+%<class>\newcommand{\imageFrame}{\begingroup\catcode`_=12\relax\@doimageFrame}%
+%<class>\newcommand<>{\@doimageFrame}[1]{%
 %<class>    \only#2{{\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{#1}}%
 %<class>    \begin{frame}#2[plain]\frametitle{\@empty}\framesubtitle{\@empty}\end{frame}}}%
+%<class>    \endgroup%
 %<class>}% Ex: \imageFrame{UnBMarca}%
 %<*class>
 
 %</class>
 %<class>%% Insere um frame com uma imagem ocupando todo o espaço vertical e centraliza horizontalmente.
-%<class>\newcommand{\vertImageFrame}[1]{%
-%<class>    {\usebackgroundtemplate{%
+%<class>\newcommand{\vertImageFrame}{\begingroup\catcode`_=12\relax\@dovertImageFrame}%
+%<class>\newcommand<>{\@dovertImageFrame}[1]{%
+%<class>    \only#2{{\usebackgroundtemplate{%
 %<class>    \vbox to \paperheight{%
 %<class>    \hbox to \paperwidth{%
 %<class>    \hfil\includegraphics[height=\paperheight]{#1}\hfil}}}%
-%<class>    \begin{frame}[plain]\frametitle{\@empty}\framesubtitle{\@empty}\end{frame}}%
+%<class>    \begin{frame}#2[plain]\frametitle{\@empty}\framesubtitle{\@empty}\end{frame}}}%
+%<class>    \endgroup%
 %<class>}% Ex: \vertImageFrame{UnBMarca}%
 %<*class>
 
@@ -831,7 +835,11 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 % A classe \unbeamer\ define alguns comandos úteis em apresentações.
 %
 % \begin{macro}{\imageFrame} \marg{imagem}\\
-% Insere um frame com a imagem dada ocupando todo o espaço.
+% Insere um frame com a imagem dada ocupando todo o espaço horizontal (aceita configuração de overlay).
+% \end{macro}
+%
+% \begin{macro}{\vertImageFrame} \marg{imagem}\\
+% Insere um frame com a imagem dada ocupando todo o espaço verticalal (aceita configuração de overlay).
 % \end{macro}
 %
 % \begin{macro}{\strikeText<>} \marg{texto}\\
