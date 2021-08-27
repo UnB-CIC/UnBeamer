@@ -10,7 +10,7 @@ Instalação
 
 Para instalar, basta seguir os seguintes passos:
 
-- Obter o [arquivo ZIP](https://github.com/gnamos/UnBeamer/archive/master.zip).
+- Obter o [arquivo ZIP](https://github.com/gnramos/UnBeamer/archive/master.zip).
 
 - Descompactar o arquivo para [diretório local](http://tug.org/tds/tds.html) (no caso do [MikTeX](http://miktex.org/), vejam [aqui](http://docs.miktex.org/manual/localadditions.html)).
 
