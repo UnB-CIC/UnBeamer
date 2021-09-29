@@ -566,6 +566,20 @@
 %<*class>
 
 %</class>
+%<class>%% Insere um frame com uma imagem ocupando todo o espaço horizontal e o centraliza %<class>verticalmente.
+%<class>\newcommand{\horizImageFrame}{\begingroup\catcode`_=12\relax\@horizImageFrame}%
+%<class>\newcommand<>{\@horizImageFrame}[1]{%
+%<class>    \only#2{{\usebackgroundtemplate{%
+%<class>    \vbox to \paperheight{%
+%<class>    \vfil%
+%<class>    \hbox to \paperwidth{\includegraphics[width=\paperwidth]{#1}}
+%<class>    \vfil}}%
+%<class>    \begin{frame}#2[plain]\frametitle{\@empty}\framesubtitle{\@empty}\end{frame}}}%
+%<class>    \endgroup%
+%<class>}% Ex: \horizImageFrame{UnBMarca}%
+%<*class>
+
+%</class>
 %<class>%% Insere um frame com uma imagem ocupando todo o espaço vertical e centraliza horizontalmente.
 %<class>\newcommand{\vertImageFrame}{\begingroup\catcode`_=12\relax\@dovertImageFrame}%
 %<class>\newcommand<>{\@dovertImageFrame}[1]{%
@@ -838,8 +852,12 @@ Este arquivo pode ser distribuído e/ou modificado conforme:
 % Insere um frame com a imagem dada ocupando todo o espaço horizontal (aceita configuração de overlay).
 % \end{macro}
 %
+% \begin{macro}{\horizImageFrame} \marg{imagem}\\
+% Insere um frame com a imagem dada ocupando todo o espaço horizontal (aceita configuração de overlay).
+% \end{macro}
+%
 % \begin{macro}{\vertImageFrame} \marg{imagem}\\
-% Insere um frame com a imagem dada ocupando todo o espaço verticalal (aceita configuração de overlay).
+% Insere um frame com a imagem dada ocupando todo o espaço vertical (aceita configuração de overlay).
 % \end{macro}
 %
 % \begin{macro}{\strikeText<>} \marg{texto}\\
